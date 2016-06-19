@@ -139,12 +139,15 @@ endif
 
 LOCAL_SRC_FILES:= ssr.c \
                   device_utils.c
-
 LOCAL_CFLAGS += \
     -Wall \
     -Werror \
     -Wno-unused-function \
     -Wno-unused-variable
+
+ifeq ($(QCPATH),)
+     LOCAL_CFLAGS += -D_OSS
+endif
 
 LOCAL_SHARED_LIBRARIES := \
     libaudioutils \
