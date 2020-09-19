@@ -24,7 +24,6 @@ libOmxAacEnc-def += -Wno-sign-conversion -Wno-shorten-64-to-32 -Wno-self-assign 
 include $(CLEAR_VARS)
 
 libOmxAacEnc-inc       := $(LOCAL_PATH)/inc
-libOmxAacEnc-inc       += $(TARGET_OUT_HEADERS)/mm-core/omxcore
 
 LOCAL_MODULE             := libOmxAacEnc
 LOCAL_MODULE_TAGS        := optional
@@ -54,6 +53,8 @@ ifeq ($(strip $(AUDIO_FEATURE_ENABLED_DLKM)),true)
   LOCAL_C_INCLUDES += $(TARGET_OUT_INTERMEDIATES)/vendor/qcom/opensource/audio-kernel/include
 endif
 
+LOCAL_HEADER_LIBRARIES += libomxcore_headers
+
 include $(BUILD_SHARED_LIBRARY)
 
 # ---------------------------------------------------------------------------------
@@ -64,13 +65,13 @@ include $(CLEAR_VARS)
 
 mm-aac-enc-test-inc    := $(LOCAL_PATH)/inc
 mm-aac-enc-test-inc    += $(LOCAL_PATH)/test
-mm-aac-enc-test-inc    += $(TARGET_OUT_HEADERS)/mm-core/omxcore
 
 LOCAL_MODULE            := mm-aenc-omxaac-test
 LOCAL_MODULE_TAGS       := optional
 LOCAL_CFLAGS            := $(libOmxAacEnc-def)
 LOCAL_CFLAGS            := -Wno-unused-local-typedef -Wno-shorten-64-to-32
 LOCAL_C_INCLUDES        := $(mm-aac-enc-test-inc)
+LOCAL_HEADER_LIBRARIES  := libomxcore_headers
 LOCAL_PRELINK_MODULE    := false
 LOCAL_SHARED_LIBRARIES  := libmm-omxcore
 LOCAL_SHARED_LIBRARIES  += libOmxAacEnc

@@ -25,7 +25,6 @@ libOmxAmrEnc-def += -Wno-sign-conversion -Wno-shorten-64-to-32 -Wno-self-assign 
 include $(CLEAR_VARS)
 
 libOmxAmrEnc-inc       := $(LOCAL_PATH)/inc
-libOmxAmrEnc-inc       += $(TARGET_OUT_HEADERS)/mm-core/omxcore
 
 LOCAL_MODULE             := libOmxAmrEnc
 LOCAL_MODULE_TAGS        := optional
@@ -55,6 +54,8 @@ ifeq ($(strip $(AUDIO_FEATURE_ENABLED_DLKM)),true)
   LOCAL_HEADER_LIBRARIES := audio_kernel_headers
   LOCAL_C_INCLUDES += $(TARGET_OUT_INTERMEDIATES)/vendor/qcom/opensource/audio-kernel/include
 endif
+
+LOCAL_HEADER_LIBRARIES += libomxcore_headers
 
 include $(BUILD_SHARED_LIBRARY)
 

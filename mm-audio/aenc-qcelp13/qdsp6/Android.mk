@@ -25,7 +25,6 @@ libOmxQcelp13Enc-def += -Wno-sign-conversion -Wno-shorten-64-to-32 -Wno-self-ass
 include $(CLEAR_VARS)
 
 libOmxQcelp13Enc-inc       := $(LOCAL_PATH)/inc
-libOmxQcelp13Enc-inc       += $(TARGET_OUT_HEADERS)/mm-core/omxcore
 
 LOCAL_MODULE             := libOmxQcelp13Enc
 LOCAL_MODULE_TAGS        := optional
@@ -56,6 +55,7 @@ ifeq ($(strip $(AUDIO_FEATURE_ENABLED_DLKM)),true)
   LOCAL_C_INCLUDES += $(TARGET_OUT_INTERMEDIATES)/vendor/qcom/opensource/audio-kernel/include
 endif
 
+LOCAL_HEADER_LIBRARIES += libomxcore_headers
 
 include $(BUILD_SHARED_LIBRARY)
 
@@ -69,7 +69,6 @@ include $(CLEAR_VARS)
 mm-qcelp13-enc-test-inc    := $(LOCAL_PATH)/inc
 mm-qcelp13-enc-test-inc    += $(LOCAL_PATH)/test
 
-mm-qcelp13-enc-test-inc    += $(TARGET_OUT_HEADERS)/mm-core/omxcore
 LOCAL_MODULE            := mm-aenc-omxqcelp13-test
 LOCAL_MODULE_TAGS       := optional
 LOCAL_CFLAGS            := $(libOmxQcelp13Enc-def)
@@ -78,6 +77,7 @@ LOCAL_C_INCLUDES        := $(mm-qcelp13-enc-test-inc)
 LOCAL_PRELINK_MODULE    := false
 LOCAL_SHARED_LIBRARIES  := libmm-omxcore
 LOCAL_SHARED_LIBRARIES  += libOmxQcelp13Enc
+LOCAL_HEADER_LIBRARIES  := libomxcore_headers
 LOCAL_VENDOR_MODULE     := true
 LOCAL_SRC_FILES         := test/omx_qcelp13_enc_test.c
 
