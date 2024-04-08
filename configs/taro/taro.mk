@@ -214,6 +214,7 @@ CONFIG_PAL_SRC_DIR := vendor/qcom/opensource/pal/configs/taro
 CONFIG_HAL_SRC_DIR := $(AUDIO_HAL_DIR)/configs/taro
 CONFIG_SKU_OUT_DIR := $(TARGET_COPY_OUT_VENDOR)/etc/audio/sku_$(DEVICE_SKU)
 
+ifneq ($(TARGET_OVERRIDE_AUDIO_CONFIGS),true)
 PRODUCT_COPY_FILES += \
     $(CONFIG_HAL_SRC_DIR)/audio_effects.conf:$(CONFIG_SKU_OUT_DIR)/audio_effects.conf \
     $(CONFIG_HAL_SRC_DIR)/audio_effects.xml:$(CONFIG_SKU_OUT_DIR)/audio_effects.xml \
@@ -300,6 +301,7 @@ $(foreach DEVICE_SKU, $(QCV_FAMILY_SKUS), \
     $(CONFIG_HAL_SRC_DIR)/audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio/sku_$(DEVICE_SKU)_qssi/audio_policy_configuration.xml)
 
 endif
+endif
 
 # Audio configuration xml's related to Ukee
 QCV_FAMILY_SKUS := ukee
@@ -307,6 +309,7 @@ DEVICE_SKU := ukee
 
 CONFIG_SKU_OUT_DIR := $(TARGET_COPY_OUT_VENDOR)/etc/audio/sku_$(DEVICE_SKU)
 
+ifneq ($(TARGET_OVERRIDE_AUDIO_CONFIGS),true)
 PRODUCT_COPY_FILES += \
     $(CONFIG_HAL_SRC_DIR)/audio_effects.conf:$(CONFIG_SKU_OUT_DIR)/audio_effects.conf \
     $(CONFIG_HAL_SRC_DIR)/audio_effects.xml:$(CONFIG_SKU_OUT_DIR)/audio_effects.xml \
@@ -317,6 +320,7 @@ PRODUCT_COPY_FILES += \
     $(CONFIG_PAL_SRC_DIR)/resourcemanager_waipio_mtp.xml:$(CONFIG_SKU_OUT_DIR)/resourcemanager_ukee_mtp.xml \
     $(CONFIG_PAL_SRC_DIR)/resourcemanager_waipio_cdp.xml:$(CONFIG_SKU_OUT_DIR)/resourcemanager_ukee_cdp.xml \
     $(CONFIG_PAL_SRC_DIR)/resourcemanager_upd.xml:$(CONFIG_SKU_OUT_DIR)/resourcemanager_upd.xml \
+endif
 
 #XML Audio configuration files
 ifneq ($(TARGET_USES_AOSP_FOR_AUDIO), true)
