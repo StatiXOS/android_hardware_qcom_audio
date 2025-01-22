@@ -178,13 +178,7 @@ void offload_bassboost_set_mode(struct bass_boost_params *bassboost,
 static inline long get_config_set_param()
 {
     long config_param = 0;
-
-#ifdef AUDIO_GKI_ENABLED
     config_param = AUDIO_EFFECTS_CONFIG_SET;
-#else
-    config_param = CONFIG_SET;
-#endif
-
     return config_param;
 }
 
