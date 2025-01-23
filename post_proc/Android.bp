@@ -19,10 +19,10 @@ cc_library_shared {
         "-Werror",
         "-DDTS_EAGLE",
     ] + select(soong_config_variable("qtiaudio", "feature_gki"), {
-        "true": ["-DAUDIO_GKI_ENABLED"],
+        true: ["-DAUDIO_GKI_ENABLED"],
         default: [],
     }) + select(soong_config_variable("qtiaudio", "feature_instance_id"), {
-        "true": ["-DINSTANCE_ID_ENABLED"],
+        true: ["-DINSTANCE_ID_ENABLED"],
         default: [],
     }),
 
